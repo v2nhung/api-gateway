@@ -1,0 +1,25 @@
+server:
+  port: ${PORT:8082}
+
+spring:
+  application:
+    name: spotify-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${REGISTRY_SERVICE:http://localhost:8081/eureka/}
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
